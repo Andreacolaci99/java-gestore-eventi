@@ -52,6 +52,10 @@ public class Evento {
         }
         return postiPrenotati;
     }
+    public int prenotaPiuPosti(int postiDaPrenotare){
+        postiPrenotati += postiDaPrenotare;
+        return postiPrenotati;
+    }
 
     public int disdici()throws Exception{
       if(dataAttuale.isAfter(dataEvento)){
