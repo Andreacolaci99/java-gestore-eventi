@@ -32,10 +32,6 @@ public class CreaEvento {
 
         Evento schiaccianoci = new Evento(titolo, dataEvento, postiTotali);
 
-        System.out.println("Vuoi effettuare una prenotazione o una disdetta ? Digitare la lettera p per prenotazione o la lettera d per disdetta (p/d)");
-        String sceltaUtente = scan.nextLine();
-
-        if(sceltaUtente.equalsIgnoreCase("p")){
         System.out.println("Vuoi effettuare una prenotazione ? Digitare y per un solo posto, la + per più posti.(y/+)");
         String prenotazione = scan.nextLine();
 
@@ -44,48 +40,44 @@ public class CreaEvento {
         schiaccianoci.prenota();
         System.out.println("Prenotazione effettuata con successo! Posti prenotati: " + schiaccianoci.getPostiPrenotati());
         } catch (Exception e) {
-        System.out.println("Errore durante la prenotazione: " + e.getMessage());
+        System.err.println("Errore durante la prenotazione: " + e.getMessage());
         }
         }else if(prenotazione.equals("+")){
             System.out.println("Quanti posti vuoi prenotare ?");
             int postiDaPrenotare = scan.nextInt();
+            scan.nextLine();
             try {
                 schiaccianoci.prenotaPiuPosti(postiDaPrenotare);
-                if(postiDaPrenotare>postiTotali){
-                    throw new Exception("Siamo spiacenti, ma l'evento è sold out !! Non puoi effettuare la prenotazione");
-                }
                 System.out.println("Prenotazione effettuata con successo! Posti prenotati: " + schiaccianoci.getPostiPrenotati());
                 } catch (Exception e) {
-                System.out.println("Errore durante la prenotazione: " + e.getMessage());
-        }
-    }
-    System.out.println("I posti rimanenti sono : " + (postiTotali - schiaccianoci.getPostiPrenotati()));
-    }else if(sceltaUtente.equalsIgnoreCase("d")){
-    System.out.println("Non puoi più venire ? Effettua comodamente una o più disdette digitando la lettera y per un solo posto o il simbolo - per disdirne più di uno. (y/-)");
-    scan.nextLine();
-    String disdetta = scan.nextLine();
+                System.err.println("Errore durante la prenotazione: " + e.getMessage());
+           }
+          }
+        int postiPrenotati = schiaccianoci.getPostiPrenotati();
+        int postiLiberiDopoPrenotazione = postiTotali - postiPrenotati;
+        System.out.println("I posti rimanenti sono : " + postiLiberiDopoPrenotazione);
+        System.out.println("Non puoi più venire ? Effettua comodamente una o più disdette digitando la lettera y per un solo posto o il simbolo - per disdirne più di uno. (y/-)");
+        String disdetta = scan.nextLine();
 
+        
     if(disdetta.equalsIgnoreCase("y")){
         try {
         schiaccianoci.disdici();
-        System.out.println("Disdetta effettuata con successo! Posti liberi: " + schiaccianoci.getPostiPrenotati());
+        System.out.println("Disdetta effettuata con successo! Posti liberi: " + (postiLiberiDopoPrenotazione + 1));
         } catch (Exception e) {
-            System.out.println("Errore durante la prenotazione: " + e.getMessage());
+            System.err.println("Errore durante la prenotazione: " + e.getMessage());
         }
     }else if(disdetta.equals("-")){
         System.out.println("Quanti posti vuoi disdire ?");
         int postiDaDisdire = scan.nextInt();
-        scan.nextLine();     
+        scan.nextLine();  
+        int postiDisdetti = postiLiberiDopoPrenotazione + postiDaDisdire;   
         try {
-        schiaccianoci.disdiciPiuPosti(postiDaDisdire);
-        if(postiDaDisdire>schiaccianoci.getPostiPrenotati()){
-        throw new Exception("Siamo spiacenti, ma il numero di posti che si vuole disdire supera il numero di posti prenotati, la invitiamo ad inserire un numero corretto");
-        }   
-        System.out.println("Disdetta effettuata con successo !! I posti rimanenti ora sono : " + schiaccianoci.getPostiPrenotati()); 
+        schiaccianoci.disdiciPiuPosti(postiDaDisdire); 
+        System.out.println("Disdetta effettuata con successo !! I posti rimanenti ora sono : " + postiDisdetti); 
         } catch (Exception e) {
-            System.out.println("Errore durante la prenotazione: " + e.getMessage());
+            System.err.println("Errore durante la prenotazione: " + e.getMessage());
         }
      }
     }
    }
-  }
