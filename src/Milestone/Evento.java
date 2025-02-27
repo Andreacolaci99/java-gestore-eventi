@@ -68,6 +68,11 @@ public class Evento {
     return postiPrenotati;
     }
 
+    public int disdiciPiuPosti(int postiDaDisdire){
+        postiPrenotati -= postiDaDisdire;
+        return postiPrenotati;
+    }
+
     @Override
     public String toString() {
         return dataEvento.format(dataFormattata) + " - " + titolo;
