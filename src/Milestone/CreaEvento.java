@@ -59,7 +59,6 @@ public class CreaEvento {
         System.out.println("Non puoi più venire ? Effettua comodamente una o più disdette digitando la lettera y per un solo posto o il simbolo - per disdirne più di uno. (y/-)");
         String disdetta = scan.nextLine();
 
-        
     if(disdetta.equalsIgnoreCase("y")){
         try {
         schiaccianoci.disdici();
@@ -71,10 +70,10 @@ public class CreaEvento {
         System.out.println("Quanti posti vuoi disdire ?");
         int postiDaDisdire = scan.nextInt();
         scan.nextLine();  
-        int postiDisdetti = postiLiberiDopoPrenotazione + postiDaDisdire;   
+        int postiDopoDisdetta = postiLiberiDopoPrenotazione + postiDaDisdire;   
         try {
         schiaccianoci.disdiciPiuPosti(postiDaDisdire); 
-        System.out.println("Disdetta effettuata con successo !! I posti rimanenti ora sono : " + postiDisdetti); 
+        System.out.println("Disdetta effettuata con successo !! I posti rimanenti ora sono : " + postiDopoDisdetta); 
         } catch (Exception e) {
             System.err.println("Errore durante la prenotazione: " + e.getMessage());
         }

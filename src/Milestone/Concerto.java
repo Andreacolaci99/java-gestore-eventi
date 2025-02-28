@@ -10,9 +10,9 @@ public class Concerto extends Evento {
     private LocalTime ora;
     private double prezzo;
     
-    private static final DateTimeFormatter dataFormattata = DateTimeFormatter.ofPattern("dd MMMM yyyy");
-    private static final DateTimeFormatter oraFormattata = DateTimeFormatter.ofPattern("HH:mm");
-    private static final DecimalFormat prezzoFormattato = new DecimalFormat("##,##0.00€");
+    private static DateTimeFormatter dataFormattata = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+    private static DateTimeFormatter oraFormattata = DateTimeFormatter.ofPattern("HH:mm");
+    private static DecimalFormat prezzoFormattato = new DecimalFormat("##,##0.00€");
 
     public Concerto(String titolo, LocalDate dataEvento, int postiTotali, LocalTime ora, double prezzo) {
         super(titolo, dataEvento, postiTotali);
