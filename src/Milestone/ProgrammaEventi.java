@@ -2,26 +2,24 @@ package Milestone;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class ProgrammaEventi {
     
     private String titolo;
+    private List<Evento> listaEventi; 
 
-    List<Evento> listaEventi;
-
-    LocalDate dataEvento;
-    
-    public ProgrammaEventi(String titolo){
+    public ProgrammaEventi(String titolo) {
         this.titolo = titolo;
         this.listaEventi = new ArrayList<>();
     }
- 
-    public void addEvento(Evento evento){
-         listaEventi.add(evento);
+
+    public void addEvento(Evento evento) {
+        listaEventi.add(evento);
     }
 
-    public List<Evento> returnEventoDate(LocalDate data) {
+    public List<Evento> getEventiPerData(LocalDate data) { 
         List<Evento> eventiFiltrati = new ArrayList<>();
         for (Evento evento : listaEventi) {
             if (evento.getData().equals(data)) {
@@ -31,14 +29,22 @@ public class ProgrammaEventi {
         return eventiFiltrati;
     }
 
-    public int numeroEventiPresenti(){
-        int eventiPresenti = listaEventi.size();
-        return eventiPresenti;
+    public int numeroEventiPresenti() {
+        return listaEventi.size();
     }
 
-    public void svuotaLista(){
+    public void svuotaLista() {
         listaEventi.clear();
     }
 
-   
+    public String dataTitolo() {
+        listaEventi.sort(Comparator.comparing(Evento::getData));
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(titolo).append("\n");
+        for (Evento evento : listaEventi) {
+            sb.append(evento.getData()).append(" - ").append(evento.getTitolo()).append("\n");
+        }
+        return sb.toString();
+    }
 }
