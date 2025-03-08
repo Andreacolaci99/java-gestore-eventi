@@ -5,21 +5,21 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class ProgrammaEventi {
+public class ProgrammaEventi{
     
     private String titolo;
     private List<Evento> listaEventi; 
 
-    public ProgrammaEventi(String titolo) {
+    public ProgrammaEventi(String titolo){
         this.titolo = titolo;
         this.listaEventi = new ArrayList<>();
     }
 
-    public void addEvento(Evento evento) {
+    public void addEvento(Evento evento){
         listaEventi.add(evento);
     }
 
-    public List<Evento> getEventiPerData(LocalDate data) { 
+    public List<Evento> getEventiPerData(LocalDate data){ 
         List<Evento> eventiFiltrati = new ArrayList<>();
         for (Evento evento : listaEventi) {
             if (evento.getData().equals(data)) {
@@ -29,11 +29,11 @@ public class ProgrammaEventi {
         return eventiFiltrati;
     }
 
-    public int numeroEventiPresenti() {
+    public int numeroEventiPresenti(){
         return listaEventi.size();
     }
 
-    public void svuotaLista() {
+    public void svuotaLista(){
         listaEventi.clear();
     }
 
