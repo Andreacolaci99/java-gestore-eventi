@@ -49,8 +49,6 @@ public class Evento {
     public int prenota()throws Exception{
         if(LocalDate.now().isAfter(dataEvento)){
             throw new Exception ("L'evento è già passato, non puoi procedere con la prenotazione");
-        }else if(postiPrenotati>=postiTotali){
-            throw new Exception("Siamo spiacenti, ma l'evento è sold out !! Non puoi effettuare la prenotazione");
         }else{
            postiPrenotati++;
         }

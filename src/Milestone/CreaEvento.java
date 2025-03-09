@@ -28,6 +28,10 @@ public class CreaEvento {
         int postiTotali = scan.nextInt();
         scan.nextLine();
 
+        if(postiTotali <= 0) {
+            throw new IllegalArgumentException("Non puoi inserire un numero minore o uguale a 0");
+        }
+
         System.out.println("L'evento è stato creato con successo : " + titolo + " in data : " + dataEvento.format(dataFormattata) + " con posti disponibili :" + postiTotali);
 
         Evento nuovoEvento = new Evento(titolo, dataEvento, postiTotali);
@@ -41,6 +45,7 @@ public class CreaEvento {
         System.out.println("Prenotazione effettuata con successo! Posti prenotati: " + nuovoEvento.getPostiPrenotati());
         } catch (Exception e) {
         System.err.println("Errore durante la prenotazione: " + e.getMessage());
+        return;
         }
         }else if(prenotazione.equals("+")){
             System.out.println("Quanti posti vuoi prenotare ?");
