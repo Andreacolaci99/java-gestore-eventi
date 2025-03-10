@@ -24,13 +24,17 @@ public class CreaEvento {
                 System.out.println("Formato data non valido. Riprova.");
             }
         }
+        int postiTotali = 0; 
+        while(postiTotali == 0){
         System.out.print("Inserisci il numero totale di posti: \n");
-        int postiTotali = scan.nextInt();
+        postiTotali = scan.nextInt();
         scan.nextLine();
 
         if(postiTotali <= 0) {
-            throw new IllegalArgumentException("Non puoi inserire un numero minore o uguale a 0");
+        System.out.println("Non puoi inserire un numero minore o uguale a 0. Riprova.");
+        postiTotali = 0;
         }
+    }
 
         System.out.println("L'evento è stato creato con successo : " + titolo + " in data : " + dataEvento.format(dataFormattata) + " con posti disponibili :" + postiTotali);
 
